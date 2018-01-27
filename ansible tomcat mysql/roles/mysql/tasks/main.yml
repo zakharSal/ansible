@@ -1,0 +1,71 @@
+---
+
+- name: Downloading latest MySQL ...
+  get_url:
+    url: "https://dev.mysql.com/get/mysql{{version}}-community-release-el7-11.noarch.rpm"
+    dest: "{{ download_dir }}"
+      
+- name: Checking if repository exists ...
+  stat: path=/etc/yum.repos.d/mysql-community.repo
+  register: output
+    
+- name: Installing RPM repository ...  
+  command: rpm -ivh {{download_dir}}/mysql{{version}}-community-release-el7-11.noarch.rpm
+  when: output.stat.exists == false
+    
+- name: Installing MySQL server ...
+  yum: 
+    name: "{{item}}"
+    state: latest 
+  with_items:
+    - mysql-server
+    - MySQL-python
+    - mysql-devel
+  ignore_errors: true 
+- name: Installing dependencies ...
+  pip:
+    name: pexpect 
+      
+- name: Starting MySQL server ...
+  service:
+    name: mysqld
+    state: started
+      
+- name: Getting temporary password ...
+  shell: grep 'temporary password' /var/log/mysqld.log | cut -d' ' -f11
+  register: pass
+   
+- debug: msg="{{pass.stdout}}"
+  
+- name: Setting root user password ...
+  expect:
+    command: mysqladmin -u root -p password
+    responses: 
+      (?i)password: "{{pass.stdout}}"
+      New password: "{{root_pass}}"
+      Confirm new password: "{{root_pass}}"
+  ignore_errors: true
+  notify: Restart mysql
+  tags:
+    - set_root
+  
+- name: Creation of new database testdb ...
+  mysql_db:
+    name:  "{{db_name}}"
+    state: present
+    login_user: root
+    login_password: "{{root_pass}}"
+     
+
+         
+      
+- name: Creation of new user testuser ...
+  mysql_user:
+    name: "{{user_name}}"
+    password: "{{user_pass}}"
+    login_user: root
+    login_password: "{{root_pass}}"
+    priv: '*.*:ALL,GRANT'
+    host: "%"
+    state: present
+    
