@@ -1,7 +1,0 @@
----
-
-
-templates: /home/ansible/pract3/roles/deploy-app/mytemplates/
-user_name: testuser
-user_pass: Qwery!123456
-db_name: testdb

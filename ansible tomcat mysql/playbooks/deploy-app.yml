@@ -1,7 +1,0 @@
----
-- hosts: tomcat
-  become: true
-  become_user: root
-  
-  roles:
-  - deploy-app
