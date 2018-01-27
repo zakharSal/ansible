@@ -1,0 +1,4 @@
+---
+- include: playbooks/setup-mysql.yml
+- include: playbooks/setup-tomcat.yml
+#- include: playbooks/deploy-app.yml
