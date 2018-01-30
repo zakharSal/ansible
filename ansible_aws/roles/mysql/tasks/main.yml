@@ -1,5 +1,15 @@
 ---
 
+- name: install epel
+  yum:
+    name: epel-release
+    state: latest
+
+- name: install the latest version of Apache
+  yum:
+    name: python-pip
+    state: latest
+
 - name: Downloading latest MySQL ...
   get_url:
     url: "https://dev.mysql.com/get/mysql{{version}}-community-release-el7-11.noarch.rpm"
