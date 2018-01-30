@@ -5,7 +5,7 @@
     name: epel-release
     state: latest
 
-- name: install the latest version of Apache
+- name: install pip
   yum:
     name: python-pip
     state: latest
