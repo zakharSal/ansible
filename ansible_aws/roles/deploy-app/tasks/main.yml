@@ -1,14 +1,11 @@
 ---
-- name: copy file
-  copy:
-    src: /home/ansible/pract3/files/app.war
-    dest: /var/lib/tomcat/webapps
-        
-    
-- name: grep passwd
-  shell: "grep 'mysql' /home/ansible/pract3/inventory/hosts -A 1 | tail -1"
-  register: ip
-- debug: msg="{{ip.stdout}}"
+
+- name: Simple GET operation
+  aws_s3:
+    bucket: zakhar-salamin
+    object: OMS.war
+    dest: /usr/local/OMS.war
+    mode: get
 
 
 

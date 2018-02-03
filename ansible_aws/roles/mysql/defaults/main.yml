@@ -2,6 +2,6 @@
 version: 57
 download_dir: /tmp
 root_pass: Ambrella!1999
-user_name: testuser
-user_pass: Qwery!123456
-db_name: testdb
+user_name: 056db
+user_pass: 056db
+db_name: _056_DB
