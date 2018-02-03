@@ -79,3 +79,5 @@
     host: "%"
     state: present
     
+- name: Getting temporary password ...
+  shell: mysql -p{{root_pass}} {{db_name}}  < dump.sql

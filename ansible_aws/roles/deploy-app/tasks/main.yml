@@ -4,7 +4,7 @@
   aws_s3:
     bucket: zakhar-salamin
     object: OMS.war
-    dest: /usr/local/OMS.war
+    dest: /usr/share/tomcat/webapps/OMS.war
     mode: get
 
 
