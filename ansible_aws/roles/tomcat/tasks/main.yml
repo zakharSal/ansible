@@ -20,5 +20,7 @@
     name: tomcat-admin-webapps
     state: installed
 
-
+- name: )))
+  selinux:
+    state: disabled
 
