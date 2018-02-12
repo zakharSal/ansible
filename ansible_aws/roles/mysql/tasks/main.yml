@@ -78,6 +78,16 @@
     priv: '*.*:ALL,GRANT'
     host: "%"
     state: present
+
+- name: Simple GET operation
+  aws_s3:
+    aws_access_key: "{{ access_key }}"
+    aws_secret_key: "{{ secret_key }}"
+    bucket: zakhar-salamin
+    object: dump.sql
+    dest: /home/centos/dump.sql
+    mode: get
+
     
 - name: Getting temporary password ...
   shell: mysql -p{{root_pass}} {{db_name}}  < dump.sql
