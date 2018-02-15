@@ -35,6 +35,10 @@
 #- name: Installing dependencies ...
 #  pip:
 #    name: pexpect 
+
+- include_defaults: acc.yml
+- include_vars: sec.yml
+
       
 - name: Starting MySQL server ...
   service:
