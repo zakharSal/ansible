@@ -36,8 +36,8 @@
 #  pip:
 #    name: pexpect 
 
-- include_defaults: acc.yml
-- include_vars: sec.yml
+
+- include_vars: key.yml
 
       
 - name: Starting MySQL server ...
