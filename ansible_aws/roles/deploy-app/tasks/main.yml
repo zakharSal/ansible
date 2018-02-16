@@ -21,9 +21,9 @@
   aws_s3:
     aws_access_key: "{{ access_key }}"
     aws_secret_key: "{{ secret_key }}"
-    bucket: zakhar-salamin
+    bucket: zsal
     object: OMS.war
-    dest: /usr/share/tomcat/webapps/OMS.war
+    dest: /usr/share/tomcat7/webapps/OMS.war
     mode: get
 
 
