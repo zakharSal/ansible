@@ -1,17 +1,21 @@
 ---
-- name: install epel
-  yum:
-    name: epel-release
-    state: latest
 
-- name: install pip
-  yum:
-    name: python-pip
-    state: latest
+- include_vars: key.yml
+- include_vars: sec.yml
 
-- name: Installing dependencies ...
-  pip:
-    name: boto3
+#- name: install epel
+#  yum:
+#    name: epel-release
+#    state: latest
+
+#- name: install pip
+#  yum:
+#    name: python-pip
+#    state: latest
+
+#- name: Installing dependencies ...
+#  pip:
+#    name: boto3
 
 - name: Simple GET operation
   aws_s3:

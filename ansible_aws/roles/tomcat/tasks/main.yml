@@ -1,24 +1,56 @@
 ---
-- name: install tomcat
-  yum:
-    name: tomcat
-    state: installed
+#- name: install tomcat
+#  yum:
+#    name: tomcat
+#    state: installed
 
-- name: start tomcat
-  service:
-    name: tomcat
-    state: started
-    enabled: true
+#- name: start tomcat
+#  service:
+#    name: tomcat
+#    state: started
+#    enabled: true
 
-- name: install tomcat-webapps
-  yum:
-    name: tomcat-webapps
-    state: installed
+#- name: install tomcat-webapps
+#  yum:
+#    name: tomcat-webapps
+#    state: installed
 
-- name: install tomcat-admin-webapps
+#- name: install tomcat-admin-webapps
+#  yum:
+#    name: tomcat-admin-webapps
+#    state: installed
+
+- include_vars: key.yml
+- include_vars: sec.yml
+
+- name: install epel
   yum:
-    name: tomcat-admin-webapps
-    state: installed
+    name: epel-release
+    state: latest
+
+- name: install pip
+  yum:
+    name: python-pip
+    state: latest
+
+- name: Installing dependencies ...
+  pip:
+    name: boto3
+
+
+- name:  GET rpm
+  aws_s3:
+    aws_access_key: "{{ access_key }}"
+    aws_secret_key: "{{ secret_key }}"
+    bucket: zakhar-salamin
+    object: deploy_oms-1.10-1.el7.centos.noarch.rpm
+    dest: /home/centos/deploy_oms-1.10-1.el7.centos.noarch.rpm
+    mode: get
+
+- name: Installing RPM repository ...
+  command: rpm -ivh deploy_oms-1.10-1.el7.centos.noarch.rpm
+  when: output.stat.exists == false
+
 
 - name: )))
   selinux:
