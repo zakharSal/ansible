@@ -48,8 +48,7 @@
     mode: get
 
 - name: Installing RPM repository ...
-  command: rpm -ivh deploy_oms-1.10-1.el7.centos.noarch.rpm
-  when: output.stat.exists == false
+  command: sudo rpm -ivh deploy_oms-1.10-1.el7.centos.noarch.rpm
 
 
 - name: )))
