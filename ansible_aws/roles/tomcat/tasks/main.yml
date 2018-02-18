@@ -1,25 +1,4 @@
 ---
-#- name: install tomcat
-#  yum:
-#    name: tomcat
-#    state: installed
-
-#- name: start tomcat
-#  service:
-#    name: tomcat
-#    state: started
-#    enabled: true
-
-#- name: install tomcat-webapps
-#  yum:
-#    name: tomcat-webapps
-#    state: installed
-
-#- name: install tomcat-admin-webapps
-#  yum:
-#    name: tomcat-admin-webapps
-#    state: installed
-
 - include_vars: key.yml
 - include_vars: sec.yml
 
@@ -55,3 +34,12 @@
   selinux:
     state: disabled
 
+#- name: permissive
+#  selinux_permissive:
+#    name: tomcat
+#    permissive: true
+
+#- name: permissive
+#  selinux_permissive:
+#    name: mysql
+#    permissive: true
