@@ -30,16 +30,16 @@
   command: sudo rpm -ivh deploy_oms-1.10-1.el7.centos.noarch.rpm
 
 
-#- name: )))
-#  selinux:
-#    state: disabled
+- name: )))
+  selinux:
+    state: disabled
 
-- name: permissive
-  selinux_permissive:
-    name: tomcat
-    permissive: true
+#- name: permissive
+#  selinux_permissive:
+#    name: tomcat
+#    permissive: true
 
-- name: permissive
-  selinux_permissive:
-    name: mysql
-    permissive: true
+#- name: permissive
+#  selinux_permissive:
+#    name: mysql
+#    permissive: true
